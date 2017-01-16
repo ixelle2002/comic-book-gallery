@@ -1,0 +1,46 @@
+﻿
+@{
+
+    var auction = (auction.Models.Auction)ViewData["Auction"];
+}
+
+<div class="action">
+
+    <h3>@auction.Title</h3>
+    <div class="detaitls">
+
+        <p>Start Time : @auction.StartTime.ToString("g")</p>
+        <p>End Time :   @auction.EntTime.ToString("g")</p>
+        <p>Start Price:   @auction.StartPrice.ToString("C")</p>
+
+        @*Since currency price is nullable, we have to check to see
+            if it has a value befoe we call .ToString()*@
+
+        <p>
+            Current Price
+            @if (auction.CurrentPrice == null)
+            {
+                @:[No Bids]
+            }
+            else
+            {
+                <span>@auction.CurrentPrice.Value.ToString("C")</span>
+            }
+
+
+        </p>
+
+    </div>
+
+    @if (auction.ImageUrl != null)
+    {
+        <img src="@auction.ImageUrl"  title="@auction.Title"/>
+    }
+       
+    <div class="description">
+
+          @auction.Description
+    </div>
+
+</div>
+
